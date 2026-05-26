@@ -100,7 +100,7 @@ export default function Home() {
 							icon: Search,
 							title: "Muat Lowongan",
 							desc:
-								"Kami kumpulkan banyak kesempatan dari berbagai perusahaan dan platform — real-time, setiap hari diperbarui.",
+								"Kami kumpulkan banyak kesempatan dari berbagai perusahaan — real-time, setiap hari diperbarui.",
 						},
 						{
 							num: "03",
