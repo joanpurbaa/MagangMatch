@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import mixpanel from "mixpanel-browser";
+
+mixpanel.init('e2d303792fc362670118fa65dcaf2186', {
+  autocapture: true,
+  record_sessions_percent: 100,
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
