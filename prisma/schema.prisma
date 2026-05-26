@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String     @id @default(uuid())
+  name         String
+  email        String     @unique
+  passwordHash String     @map("password_hash")
+  nim          String     @unique
+  createdAt    DateTime   @default(now()) @map("created_at")
+  savedCvs     SavedCv[]
+
+  @@map("user")
+}
+
+model SavedCv {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  raw       Json
+  label     String   @default("CV Saya")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("saved_cv")
+}
+
+model Internship {
+  id                   BigInt    @id @default(autoincrement())
+  internshipId         String    @default(uuid())
+  companyName          String?   @map("company_name")
+  companyLogo          String?   @map("company_logo")
+  position             String?
+  quota                Int?
+  workType             String?   @map("work_type")
+  minimumSemester      Int?      @map("minimum_semester")
+  city                 String?
+  salary               BigInt?
+  genderRequirement    String?   @map("gender_requirement")
+  studyProgram         String?   @db.Text @map("study_program")
+  applicationDeadline  DateTime? @db.Date @map("application_deadline")
+  jobDescription       String?   @db.Text @map("job_description")
+  requirements         String?   @db.Text
+  benefits             String?   @db.Text
+  skills               Json?
+  selectionStage1      String?   @map("selection_stage_1")
+  selectionStage1Start DateTime? @db.Date @map("selection_stage_1_start")
+  selectionStage1End   DateTime? @db.Date @map("selection_stage_1_end")
+  selectionStage2      String?   @map("selection_stage_2")
+  selectionStage2Start DateTime? @db.Date @map("selection_stage_2_start")
+  selectionStage2End   DateTime? @db.Date @map("selection_stage_2_end")
+  companyDescription   String?   @db.Text @map("company_description")
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime? @updatedAt @map("updated_at")
+
+  @@map("internship")
+}
