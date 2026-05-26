@@ -34,7 +34,7 @@ export default function RegisterPage() {
 			setError(data.error ?? "Registrasi gagal.");
 			return;
 		}
-		router.push("/");
+		router.push("/dashboard");
 	};
 
 	const fields = [

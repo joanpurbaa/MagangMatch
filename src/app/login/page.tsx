@@ -29,13 +29,12 @@ export default function LoginPage() {
 			setError(data.error ?? "Login gagal.");
 			return;
 		}
-		router.push("/");
+		router.push("/dashboard");
 	};
 
 	return (
 		<div className="min-h-screen bg-stone-50 flex items-center justify-center px-4">
 			<div className="w-full max-w-sm">
-				{/* Logo */}
 				<div className="flex items-center gap-2.5 mb-8">
 					<div className="w-10 h-10 bg-blue-600 rounded-[10px] flex items-center justify-center shrink-0">
 						<Image src="/logo.svg" width={24} height={24} alt="Logo" />
